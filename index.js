@@ -50,7 +50,7 @@ async function fetch(url, options) {
             status: 500,
             headers: response.headers,
             redirects: redirects,
-            html: null
+            content: null
           });
           throw Error(url);
         }
@@ -72,7 +72,7 @@ async function fetch(url, options) {
       status: res.statusCode,
       headers: res.headers,
       redirects: redirects,
-      html: tighten(res.body),
+      content: tighten(res.body),
       type: "fetch"
     });
   });
@@ -105,7 +105,6 @@ async function emulate(url, options) {
           password: options.proxy.password
         });
       }
-      console.log(options.proxy);
       page.on("pageerror", error => {});
       await page.emulate({
         viewport: { width: 1280, height: 1024 },
@@ -133,7 +132,7 @@ async function emulate(url, options) {
         status: response.status(),
         headers: response.headers(),
         redirects: redirects,
-        html: tighten(await response.text()),
+        content: tighten(await response.text()),
         type: "emulate"
       };
     } catch (e) {
@@ -143,7 +142,7 @@ async function emulate(url, options) {
         status: e.code || e.statusCode || "ECONNREFUSED",
         headers: {},
         redirects: [],
-        html: null,
+        content: null,
         type: "emulate"
       };
     }
