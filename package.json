@@ -1,6 +1,6 @@
 {
   "name": "reqdata",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Collect request data from a url. Includes status code, redirects, headers and content.",
   "main": "index.js",
   "scripts": {

@@ -113,7 +113,7 @@ async function emulate(url, options) {
       });
 
       const response = await page.goto(url, {
-        timeout: 30000,
+        timeout: 60000,
         waitUntil: "networkidle2"
       });
       const redirects = response
@@ -136,7 +136,6 @@ async function emulate(url, options) {
         type: "emulate"
       };
     } catch (e) {
-      console.log(e);
       res = {
         url: url,
         status: e.code || e.statusCode || "ECONNREFUSED",
@@ -157,6 +156,6 @@ function tighten(text) {
   return text
     .replace(/\s+/g, " ")
     .replace(/\s+/g, " ")
-    .replace(/(\s?-\s)/g, "")
+    .replace(/(\s?-\s)/g, " ")
     .trim();
 }
